@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban-Design_Procedural-3d-Land-map</title>
+  <link rel="stylesheet" href="./src/clientInspection.css" />
+</head>
+<body>
+  <div id="clientApp">
+    <div id="clientThreeContainer"></div>
+
+    <aside class="client-panel left">
+      <div class="panel-title">Plot Search</div>
+      <div class="search-row">
+        <input id="plotSearchInput" type="text" placeholder="Search plot id..." />
+        <button id="findPlotBtn">Find</button>
+      </div>
+
+      <label for="mapColorMode">Map Colors</label>
+      <select id="mapColorMode">
+        <option value="ZERO">ZERO</option>
+        <option value="HEIGHT_GRADIENT">Height Gradient</option>
+        <option value="DISTANCE_TO_CENTERS">Distance To Centres</option>
+        <option value="DENSITY">Density</option>
+        <option value="FAR">FAR</option>
+      </select>
+
+      <label for="buildingColorMode">Building Colors</label>
+      <select id="buildingColorMode">
+        <option value="ZERO">ZERO</option>
+        <option value="PROGRAM_TYPE">Program Type (Floor Stack)</option>
+        <option value="HEIGHT_GRADIENT">Height Gradient</option>
+        <option value="DISTANCE_TO_CENTERS">Distance To Centres</option>
+        <option value="DENSITY">Density</option>
+        <option value="FAR">FAR</option>
+      </select>
+
+      <label class="check-row"><input id="toggleTransparency" type="checkbox" checked /> Transparency</label>
+      <label class="check-row"><input id="togglePlots" type="checkbox" checked /> Plot Layer</label>
+      <label class="check-row"><input id="toggleFirstPerson" type="checkbox" /> First Person (V)</label>
+
+      <div class="controls-title">Controls</div>
+      <div class="controls-list">
+        <div><span>Select Plot</span><span>Left Mouse</span></div>
+        <div><span>Orbit</span><span>Right Mouse</span></div>
+        <div><span>Pan</span><span>Middle Mouse</span></div>
+        <div><span>Zoom</span><span>Scroll</span></div>
+      </div>
+
+      <div class="portal-row">
+        <a class="portal-btn" href="/" target="_blank" rel="noopener">Back To Generator</a>
+      </div>
+    </aside>
+
+    <aside class="client-panel right">
+      <div class="tab-row">
+        <button id="tabPlotInspector" class="tab-btn active">Plot Inspector</button>
+        <button id="tabCbdSummary" class="tab-btn">Forest City CBD</button>
+      </div>
+
+      <div id="plotInspectorTab" class="tab-content active">
+        <div class="panel-title" id="inspectorTitle">Plot Inspector</div>
+        <div class="inspector-body" id="inspectorBody">Select a plot to inspect attributes.</div>
+      </div>
+
+      <div id="cbdSummaryTab" class="tab-content">
+        <div class="panel-title">Forest City CBD</div>
+        <div class="inspector-body" id="cbdSummaryBody">CBD area: 2400 acres
+GFA: 0 m²</div>
+      </div>
+
+      <button id="zoomSelectedBtn">Zoom To Plot</button>
+      <div class="status" id="clientStatus">Loading scenario...</div>
+    </aside>
+  </div>
+
+  <script type="module" src="./src/clientInspection.js"></script>
+</body>
+</html>

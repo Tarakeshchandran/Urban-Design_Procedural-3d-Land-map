@@ -1,0 +1,198 @@
+:root {
+  --bg: #030608;
+  --panel: rgba(16, 26, 30, 0.76);
+  --panel-border: rgba(111, 235, 235, 0.35);
+  --ink: #ccf5f4;
+  --ink-dim: #9ed5d4;
+  --accent: #28d9d9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+#clientApp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#clientThreeContainer,
+#clientThreeContainer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+}
+
+.client-panel {
+  position: absolute;
+  top: 16px;
+  width: 300px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 12px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  z-index: 12;
+}
+
+.client-panel.left {
+  left: 16px;
+}
+
+.client-panel.right {
+  right: 16px;
+}
+
+.panel-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.tab-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 7px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(111, 235, 235, 0.45);
+  background: rgba(7, 18, 24, 0.85);
+  color: var(--ink);
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: rgba(26, 71, 83, 0.9);
+  border-color: rgba(111, 235, 235, 0.8);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+input[type="text"], select, button {
+  border-radius: 6px;
+  border: 1px solid rgba(111, 235, 235, 0.4);
+  background: rgba(5, 14, 18, 0.85);
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 8px;
+}
+
+select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 7px 8px;
+}
+
+button {
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.76rem;
+  color: var(--ink-dim);
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.controls-title {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+
+.controls-list {
+  border: 1px solid rgba(111, 235, 235, 0.25);
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 0.75rem;
+}
+
+.controls-list div {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+
+.portal-row {
+  margin-top: 10px;
+}
+
+.portal-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(111, 235, 235, 0.4);
+  background: rgba(5, 14, 18, 0.85);
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.inspector-body {
+  white-space: pre-line;
+  font-size: 0.79rem;
+  line-height: 1.35;
+  min-height: 180px;
+  margin-bottom: 10px;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 0.74rem;
+  color: #9cd0cf;
+}
+
+@media (max-width: 1080px) {
+  .client-panel {
+    width: 270px;
+  }
+}

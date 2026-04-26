@@ -1,0 +1,130 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban-Design_Procedural-3d-Land-map</title>
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1>ShapeGrammar_Codex Urban Shape Grammar</h1>
+      <div class="topbar-right">
+        <a class="portal-link" href="/client-inspection.html" target="_blank" rel="noopener">Open Client Portal</a>
+        <div id="status">Ready</div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <h2>Pipeline</h2>
+        <button data-action="load">c - Import CSV</button>
+        <button data-action="parcels">b - Generate Parcels</button>
+        <button data-action="analyze">a - Analyze Parcels</button>
+        <button data-action="analyzeRoads">r - Analyze Roads</button>
+        <button data-action="subdivide">d - Subdivide</button>
+        <button data-action="footprints">f - Footprints</button>
+        <button data-action="genAll"># - 3D All</button>
+
+        <h2>Selection</h2>
+        <button data-action="clearSelection">x - Clear Selection</button>
+        <div id="selectionInfo">Selected parcels: 0</div>
+
+        <h2>Display</h2>
+        <label><input type="checkbox" data-toggle="site" checked /> 1 Site Data</label>
+        <label><input type="checkbox" data-toggle="analysis" /> 2 Parcel Analysis</label>
+        <label><input type="checkbox" data-toggle="analyzedRoads" /> R1 Analyzed Roads</label>
+        <label><input type="checkbox" data-toggle="intersections" /> R2 Intersections</label>
+        <label><input type="checkbox" data-toggle="networkPattern" /> R3 Network Pattern</label>
+        <label><input type="checkbox" data-toggle="plots" /> 4 Subdivided Plots</label>
+        <label><input type="checkbox" data-toggle="footprints" checked /> 5 Building Footprints</label>
+        <label><input type="checkbox" data-toggle="buildings" checked /> 6 3D Buildings</label>
+        <label><input type="checkbox" data-toggle="buildingsByProgram" /> 7 Buildings by Program</label>
+        <label><input type="checkbox" data-toggle="footprintsByEdge" /> 8 Footprints by Edge</label>
+        <label><input type="checkbox" data-toggle="orientationDebug" /> O Orientation Debug</label>
+        <label><input type="checkbox" data-toggle="attractors" /> G Interactive Attractors</label>
+        <label><input type="checkbox" data-toggle="firstPerson" /> V First Person Walk</label>
+        <label><input type="checkbox" data-toggle="technicalView" /> M Technical View</label>
+        <label><input type="checkbox" data-toggle="renderedView" /> N Rendered View</label>
+
+        <h2>Export</h2>
+        <button data-action="exportAll">e - Export OBJ All</button>
+        <button data-action="exportSelected">E - Export OBJ Selected</button>
+        <button data-action="export2dPngHQ">Export HQ 2D PNG</button>
+        <button data-action="export3dPngHQ">Export HQ 3D PNG</button>
+        <button data-action="exportBothPngHQ">Export HQ Both PNGs</button>
+
+        <h2>Parameters</h2>
+        <div class="slider-group">
+          <label>Large Parcel Thresh: <span id="valLargeThresh">9500</span>m²</label>
+          <input type="range" id="sliderLargeThresh" min="50" max="200" step="5" value="95" />
+        </div>
+        <div class="slider-group">
+          <label>Medium Parcel Thresh: <span id="valMediumThresh">3600</span>m²</label>
+          <input type="range" id="sliderMediumThresh" min="20" max="150" step="1" value="36" />
+        </div>
+        <div class="slider-group">
+          <label>Large Subdiv Target: <span id="valLargeTarget">2500</span>m²</label>
+          <input type="range" id="sliderLargeTarget" min="10" max="100" step="1" value="25" />
+        </div>
+        <div class="slider-group">
+          <label>Medium Subdiv Target: <span id="valMediumTarget">4000</span>m²</label>
+          <input type="range" id="sliderMediumTarget" min="10" max="100" step="1" value="40" />
+        </div>
+        <div class="slider-group">
+          <label>Small Subdiv Target: <span id="valSmallTarget">2500</span>m²</label>
+          <input type="range" id="sliderSmallTarget" min="10" max="100" step="1" value="25" />
+        </div>
+        <div class="slider-group">
+          <label>Attractor Range: <span id="valAttractorRange">1300</span>m</label>
+          <input type="range" id="sliderAttractorRange" min="50" max="500" step="10" value="130" />
+        </div>
+        <div class="slider-group">
+          <label>Peak Height: <span id="valPeakHeight">180</span>m</label>
+          <input type="range" id="sliderPeakHeight" min="40" max="400" step="10" value="180" />
+        </div>
+        <div class="slider-group">
+          <label>Low Height: <span id="valLowHeight">20</span>m</label>
+          <input type="range" id="sliderLowHeight" min="20" max="250" step="10" value="20" />
+        </div>
+        <div class="slider-group">
+          <label>Subdivision Scaling: <span id="valSubdiv">1.0</span>x</label>
+          <input type="range" id="sliderSubdiv" min="0.5" max="3.0" step="0.1" value="1.0" />
+        </div>
+        <div class="slider-group">
+          <label>Green Space Ratio: <span id="valGreen">1.0</span>x</label>
+          <input type="range" id="sliderGreen" min="0.0" max="3.0" step="0.1" value="1.0" />
+        </div>
+        <div class="slider-group">
+          <label>Building Height: <span id="valHeight">1.0</span>x</label>
+          <input type="range" id="sliderHeight" min="0.2" max="3.0" step="0.1" value="1.0" />
+        </div>
+        <div class="slider-group">
+          <label>Voxel Size: <span id="valVoxel">1.0</span>x</label>
+          <input type="range" id="sliderVoxel" min="0.5" max="2.0" step="0.1" value="1.0" />
+        </div>
+      </aside>
+
+      <section class="canvasWrap">
+        <canvas id="mapCanvas"></canvas>
+      </section>
+
+            <section class="canvasWrap">
+        <div id="threeContainer"></div>
+        <div id="statsPanel" class="stats-overlay">
+          <h3>Site Statistics</h3>
+          <div class="stat-item">
+            <span>Total GFA:</span>
+            <span id="totalGFA">0</span> m²
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
+
+
